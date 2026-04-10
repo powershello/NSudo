@@ -1,13 +1,7 @@
 ﻿# ![Logo](Logo.png) NSudo — System Administration Toolkit
 
-[![Latest Release Downloads](https://img.shields.io/github/downloads/powershello/NSudo/latest/total.svg)](https://github.com/powershello/NSudo/releases/latest)
-[![Total Downloads](https://img.shields.io/github/downloads/powershello/NSudo/total.svg)](https://github.com/powershello/NSudo/releases)
 [![VirusTotal 0/61](https://img.shields.io/badge/VirusTotal-0%2F61-brightgreen?logo=virustotal)](https://www.virustotal.com/gui/file/c191f4fa0285f0786e9bfbc3c761f89b694aab54409abec9d29321d4f6459154)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](License.md)
-
-> A fork of the archived [NSudo](https://github.com/M2TeamArchived/NSudo), reimagined as a single PowerShell 5.1 / Batch polyglot script.
-
----
 
 ## Overview
 
