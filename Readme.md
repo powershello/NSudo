@@ -1,100 +1,47 @@
-﻿# ![Logo](Logo.png) NSudo - System Administration Toolkit
+﻿NSudo.cmdNSudo.cmd is a 100% native PowerShell 5.1 / Batch polyglot fork of the legendary NSudo by M2-Team. It completely replaces the traditional C++ NSudo Launcher with a single, highly evasive, zero-compiled-binary .cmd script.Key FeaturesZero Compiled Binaries: No .exe or .dll files required. The entire application, including the WinForms UI and the Win32 API bridge, is packed into one file.Defender-Friendly (0/61 VT): Designed to bypass modern AV heuristics and Sigma rules (e.g., utilizing fltmc for elevation checks).Zero Temp-File Execution: UAC elevation and Current Working Directory (CWD) preservation are handled entirely in-memory using Base64 encoding."Crazy Path" Immunity: Preserves working directories containing complex Unicode or brackets [ ] across CMD, PowerShell, and PowerShell ISE, bypassing native Microsoft path-resolution bugs.Win11 UWP Alias Bypass: Explicitly routes commands like notepad to System32\notepad.exe to prevent Win32 Error 2 when running under the TrustedInstaller identity.Ghost-Window Free: Natively executes non-PE files like .msc (e.g., services.msc) by dynamically routing them through mmc.exe, preventing Win32 Error 193.UsageDouble-click NSudo.cmd to open the GUI, or run it directly from the command line:Format: NSudo.cmd [ Options and parameters ] Command line or ShortCut Command
 
-[![AppVeyor CI](https://ci.appveyor.com/api/projects/status/github/M2Team/NSudo?branch=master&svg=true)](https://ci.appveyor.com/project/MouriNaruto/nsudo)
-[![Latest Version](https://img.shields.io/github/release/M2Team/NSudo.svg)](https://github.com/M2Team/NSudo/releases/latest)
-[![Latest Release Downloads](https://img.shields.io/github/downloads/M2Team/NSudo/latest/total.svg)](https://github.com/M2Team/NSudo/releases/latest)
-[![Total Downloads](https://img.shields.io/github/downloads/M2Team/NSudo/total.svg)](https://github.com/M2Team/NSudo/releases)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](License.md)
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FM2Team%2FNSudo.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FM2Team%2FNSudo?ref=badge_shield)
+Options:
 
-[简体中文](Readme.zh-CN.md) | [Русский](Readme.ru.md)
+-U:[ Option ] Create a process with specified user option.
+Available options:
+    T TrustedInstaller
+    S System
+    C Current User
+    E Current User (Elevated)
+    P Current Process
+    D Current Process (Drop right)
 
-This is the source code repository of NSudo. If you wonder to visit the NSudo 
-official website, download NSudo or read the NSudo documents etc, please visit
-https://nsudo.m2team.org.
+-P:[ Option ] Create a process with specified privilege option.
+Available options:
+    E Enable All Privileges
+    D Disable All Privileges
 
-This readme file will be the developer oriented document because this it is 
-under the source code repository.
+-M:[ Option ] Create a process with specified Integrity Level option.
+Available options:
+    S System
+    H High
+    M Medium
+    L Low
 
-## 2021 Development Roadmap
+-Priority:[ Option ] Create a process with specified process priority option.
+Available options:
+    Idle
+    BelowNormal
+    Normal
+    AboveNormal
+    High
+    RealTime
 
-- [x] Add Current User (Elevated) Mode.
-  - [x] Implemented in NSudo Shared Library.
-  - [x] Implemented in NSudo Launcher.
-- [ ] Use wxWidgets to implement the UI.
-- [ ] TOML-based environment configuration file.
-- [ ] Add more APIs to NSudo Shared Library.
-- [ ] Export PDF directly from the offical website.
-- [x] Improve the Gitee mirror experience.
-  - [x] Translate the readme in the source tree root.
-  - [x] Synchronizing automatically when commits pushed.
+-ShowWindowMode:[ Option ] Create a process with specified window mode option.
+Available options:
+    Show
+    Hide
+    Maximize
+    Minimize
 
-## Relevant People
-
-Please read [People.md](People.md).
-
-## Code of Conduct
-
-Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
-
-## Contributing to NSudo
-
-### How to become a contributor
-
-- Direct contributions
-  - **Create pull requests directly.**
-  - Please send e-mails to Mouri_Naruto@Outlook.com if you have any
-    questions.
-- Feedback suggestions and bugs.
-  - We use GitHub issues to track bugs and features.
-  - For bugs and general issues please 
-    [file a new issue](https://github.com/M2Team/NSudo/issues/new).
-
-### Code contribution guidelines
-
-#### Prerequisites
-
-- Visual Studio 2017 Version 15.9 or later.
-  - You also need install ARM64 components (MSVC Toolchain and ATL/MFC) if you
-    want to compile ARM64 version of NSudo.
-- Windows 10 Version 1507 SDK or later.
-  - You also need install ARM64 components when you installing the Windows 10
-    Version 1703 SDK or later and you want to compile ARM64 version of NSudo.
-
-#### How to build all targets of NSudo
-
-Run `BuildAllTargets.bat` in `Source/Native`.
-
-#### How to modify or debugging NSudo
-
-Open `NSudo.sln` in `Source/Native`.
-
-#### Code style and conventions
-
-- C++: [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
-- C#: Follow the .NET Core team's [C# coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
-
-For all languages respect the [.editorconfig](https://editorconfig.org/) file 
-specified in the source tree. Many IDEs natively support this or can with a 
-plugin.
-
-#### Copying files from other projects
-
-The following rules must be followed for PRs that include files from another 
-project:
-- The license of the file is
-  [permissive](https://en.wikipedia.org/wiki/Permissive_free_software_licence).
-- The license of the file is left intact.
-- The contribution is correctly attributed in the [License](License.md)
-  file in the repository, as needed.
-
-### How to update documents.
-
-Refer to https://github.com/M2Team/NSudo/pull/29.
-
-To build new docs, you'll need to have [Node.js](https://nodejs.org) and 
-[Yarn](https://yarnpkg.com) installed on your system, and run `build.bat` in
-`Website`.
-
-Docs engine is based on [VuePress](https://v1.vuepress.vuejs.org).
+-Wait Make NSudo Launcher wait for the created process to end before exiting.
+-CurrentDirectory:[ DirectoryPath ] Set the current directory for the process.
+-UseCurrentConsole Create a process with the current console window.
+-Version Show version information of NSudo Launcher.
+-? / -H / -Help Show this content.
+Technical DetailsUnder the hood, NSudo.cmd acts as an advanced C# wrapper dynamically compiled via PowerShell's Add-Type. It relies heavily on direct Win32 API calls (CreateProcessWithTokenW, DuplicateTokenEx, OpenProcessToken, SetTokenInformation) to accurately duplicate and adjust process tokens across Active Sessions, entirely avoiding third-party dependencies.CreditsOriginal C++ concept and NSudo tool by M2-Team.
